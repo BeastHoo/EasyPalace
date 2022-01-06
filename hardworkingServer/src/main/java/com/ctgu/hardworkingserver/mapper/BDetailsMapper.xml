@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.hardworkingserver.mapper.BDetailsMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.hardworkingserver.entity.BDetails">
+    <id column="blog_id" jdbcType="VARCHAR" property="blogId" />
+    <result column="click_rate" jdbcType="INTEGER" property="clickRate" />
+    <result column="collect_num" jdbcType="INTEGER" property="collectNum" />
+    <result column="tag_1" jdbcType="VARCHAR" property="tag1" />
+    <result column="tag_2" jdbcType="VARCHAR" property="tag2" />
+    <result column="tag_3" jdbcType="VARCHAR" property="tag3" />
+    <result column="tag_4" jdbcType="VARCHAR" property="tag4" />
+    <result column="tag_5" jdbcType="VARCHAR" property="tag5" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="img_url" jdbcType="VARCHAR" property="imgUrl" />
+    <result column="editor" jdbcType="VARCHAR" property="editor" />
+    <result column="edit_time" jdbcType="TIMESTAMP" property="editTime" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctgu.hardworkingserver.entity.BDetails">
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    blog_id, click_rate, collect_num, tag_1, tag_2, tag_3, tag_4, tag_5, title, img_url, 
+    editor, edit_time
+  </sql>
+  <sql id="Blob_Column_List">
+    description
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from blog_details
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+      select
+      <include refid="Base_Column_List" />
+      ,
+      <include refid="Blob_Column_List" />
+      from blog_details
+    </select>
+  <select id="selectByEditor" resultMap="BaseResultMap">
+    select * from blog_details where editor=#{editor}
+  </select>
+    <select id="vagueSearch" resultMap="BaseResultMap">
+      select * from blog_details where title like #{key}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from blog_details
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.hardworkingserver.entity.BDetails">
+    insert into blog_details (blog_id, click_rate, collect_num, 
+      tag_1, tag_2, tag_3, tag_4, 
+      tag_5, title, img_url, 
+      editor, edit_time, description
+      )
+    values (#{blogId,jdbcType=VARCHAR}, #{clickRate,jdbcType=INTEGER}, #{collectNum,jdbcType=INTEGER},
+      #{tag1,jdbcType=VARCHAR}, #{tag2,jdbcType=VARCHAR}, #{tag3,jdbcType=VARCHAR}, #{tag4,jdbcType=VARCHAR},
+      #{tag5,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{imgUrl,jdbcType=VARCHAR},
+      #{editor,jdbcType=VARCHAR}, #{editTime,jdbcType=TIMESTAMP}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.hardworkingserver.entity.BDetails">
+    insert into blog_details
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        blog_id,
+      </if>
+      <if test="clickRate != null">
+        click_rate,
+      </if>
+      <if test="collectNum != null">
+        collect_num,
+      </if>
+      <if test="tag1 != null">
+        tag_1,
+      </if>
+      <if test="tag2 != null">
+        tag_2,
+      </if>
+      <if test="tag3 != null">
+        tag_3,
+      </if>
+      <if test="tag4 != null">
+        tag_4,
+      </if>
+      <if test="tag5 != null">
+        tag_5,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="imgUrl != null">
+        img_url,
+      </if>
+      <if test="editor != null">
+        editor,
+      </if>
+      <if test="editTime != null">
+        edit_time,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="blogId != null">
+        #{blogId,jdbcType=VARCHAR},
+      </if>
+      <if test="clickRate != null">
+        #{clickRate,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null">
+        #{collectNum,jdbcType=INTEGER},
+      </if>
+      <if test="tag1 != null">
+        #{tag1,jdbcType=VARCHAR},
+      </if>
+      <if test="tag2 != null">
+        #{tag2,jdbcType=VARCHAR},
+      </if>
+      <if test="tag3 != null">
+        #{tag3,jdbcType=VARCHAR},
+      </if>
+      <if test="tag4 != null">
+        #{tag4,jdbcType=VARCHAR},
+      </if>
+      <if test="tag5 != null">
+        #{tag5,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null">
+        #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.hardworkingserver.entity.BDetails">
+    update blog_details
+    <set>
+      <if test="clickRate != null">
+        click_rate = #{clickRate,jdbcType=INTEGER},
+      </if>
+      <if test="collectNum != null">
+        collect_num = #{collectNum,jdbcType=INTEGER},
+      </if>
+      <if test="tag1 != null">
+        tag_1 = #{tag1,jdbcType=VARCHAR},
+      </if>
+      <if test="tag2 != null">
+        tag_2 = #{tag2,jdbcType=VARCHAR},
+      </if>
+      <if test="tag3 != null">
+        tag_3 = #{tag3,jdbcType=VARCHAR},
+      </if>
+      <if test="tag4 != null">
+        tag_4 = #{tag4,jdbcType=VARCHAR},
+      </if>
+      <if test="tag5 != null">
+        tag_5 = #{tag5,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="imgUrl != null">
+        img_url = #{imgUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="editor != null">
+        editor = #{editor,jdbcType=VARCHAR},
+      </if>
+      <if test="editTime != null">
+        edit_time = #{editTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctgu.hardworkingserver.entity.BDetails">
+    update blog_details
+    set click_rate = #{clickRate,jdbcType=INTEGER},
+      collect_num = #{collectNum,jdbcType=INTEGER},
+      tag_1 = #{tag1,jdbcType=VARCHAR},
+      tag_2 = #{tag2,jdbcType=VARCHAR},
+      tag_3 = #{tag3,jdbcType=VARCHAR},
+      tag_4 = #{tag4,jdbcType=VARCHAR},
+      tag_5 = #{tag5,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      edit_time = #{editTime,jdbcType=TIMESTAMP},
+      description = #{description,jdbcType=LONGVARCHAR}
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.hardworkingserver.entity.BDetails">
+    update blog_details
+    set click_rate = #{clickRate,jdbcType=INTEGER},
+      collect_num = #{collectNum,jdbcType=INTEGER},
+      tag_1 = #{tag1,jdbcType=VARCHAR},
+      tag_2 = #{tag2,jdbcType=VARCHAR},
+      tag_3 = #{tag3,jdbcType=VARCHAR},
+      tag_4 = #{tag4,jdbcType=VARCHAR},
+      tag_5 = #{tag5,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      img_url = #{imgUrl,jdbcType=VARCHAR},
+      editor = #{editor,jdbcType=VARCHAR},
+      edit_time = #{editTime,jdbcType=TIMESTAMP}
+    where blog_id = #{blogId,jdbcType=VARCHAR}
+  </update>
+    <update id="updateClickRateByPrimaryKey" parameterType="java.lang.String">
+      update blog_details
+      set click_rate=click_rate+1
+      where blog_id = #{bid}
+    </update>
+</mapper>

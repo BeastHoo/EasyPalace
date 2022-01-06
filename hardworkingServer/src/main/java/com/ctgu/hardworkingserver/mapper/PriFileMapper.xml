@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.hardworkingserver.mapper.PriFileMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.hardworkingserver.entity.PubFile">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="loc" jdbcType="VARCHAR" property="loc" />
+    <result column="isplayable" jdbcType="BIT" property="isplayable" />
+    <result column="ismusic" jdbcType="BIT" property="ismusic" />
+    <result column="isvideo" jdbcType="BIT" property="isvideo" />
+    <result column="ispic" jdbcType="BIT" property="ispic" />
+    <result column="msize" jdbcType="VARCHAR" property="msize" />
+    <result column="mtime" jdbcType="VARCHAR" property="mtime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, filename, loc, isplayable, ismusic, isvideo, ispic, msize
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from privatefiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByUsername" resultType="com.ctgu.hardworkingserver.entity.PubFile">
+      select * from privatefiles where username=#{username}
+    </select>
+    <select id="vagueQuery" resultType="com.ctgu.hardworkingserver.entity.PubFile">
+      select * from privatefiles where username=#{param1} and filename like #{param2}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from privatefiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    insert into privatefiles (id, username, filename, 
+      loc, isplayable, ismusic, isvideo, 
+      ispic, msize,mtime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{loc,jdbcType=VARCHAR}, #{isplayable,jdbcType=BIT}, #{ismusic,jdbcType=BIT}, #{isvideo,jdbcType=BIT}, 
+      #{ispic,jdbcType=BIT}, #{msize,jdbcType=VARCHAR},#{mtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    insert into privatefiles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="loc != null">
+        loc,
+      </if>
+      <if test="isplayable != null">
+        isplayable,
+      </if>
+      <if test="ismusic != null">
+        ismusic,
+      </if>
+      <if test="isvideo != null">
+        isvideo,
+      </if>
+      <if test="ispic != null">
+        ispic,
+      </if>
+      <if test="msize != null">
+        msize,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        #{loc,jdbcType=VARCHAR},
+      </if>
+      <if test="isplayable != null">
+        #{isplayable,jdbcType=BIT},
+      </if>
+      <if test="ismusic != null">
+        #{ismusic,jdbcType=BIT},
+      </if>
+      <if test="isvideo != null">
+        #{isvideo,jdbcType=BIT},
+      </if>
+      <if test="ispic != null">
+        #{ispic,jdbcType=BIT},
+      </if>
+      <if test="msize != null">
+        #{msize,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    update privatefiles
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        loc = #{loc,jdbcType=VARCHAR},
+      </if>
+      <if test="isplayable != null">
+        isplayable = #{isplayable,jdbcType=BIT},
+      </if>
+      <if test="ismusic != null">
+        ismusic = #{ismusic,jdbcType=BIT},
+      </if>
+      <if test="isvideo != null">
+        isvideo = #{isvideo,jdbcType=BIT},
+      </if>
+      <if test="ispic != null">
+        ispic = #{ispic,jdbcType=BIT},
+      </if>
+      <if test="msize != null">
+        msize = #{msize,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    update privatefiles
+    set username = #{username,jdbcType=VARCHAR},
+      filename = #{filename,jdbcType=VARCHAR},
+      loc = #{loc,jdbcType=VARCHAR},
+      isplayable = #{isplayable,jdbcType=BIT},
+      ismusic = #{ismusic,jdbcType=BIT},
+      isvideo = #{isvideo,jdbcType=BIT},
+      ispic = #{ispic,jdbcType=BIT},
+      msize = #{msize,jdbcType=VARCHAR},
+      mtime = #{mtime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

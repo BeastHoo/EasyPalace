@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.hardworkingserver.mapper.MsgMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.hardworkingserver.entity.Msg">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="userto" jdbcType="VARCHAR" property="userto" />
+    <result column="userfrom" jdbcType="VARCHAR" property="userfrom" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="rely" jdbcType="VARCHAR" property="rely" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+  </resultMap>
+  <resultMap extends="BaseResultMap" id="ResultMapWithBLOBs" type="com.ctgu.hardworkingserver.entity.Msg">
+    <result column="content" jdbcType="LONGVARCHAR" property="content" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, userto, userfrom, title, mtime, rely, status
+  </sql>
+  <sql id="Blob_Column_List">
+    content
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from messages
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectByTo" resultType="com.ctgu.hardworkingserver.entity.Msg">
+    select * from messages where userto = #{to}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from messages
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.hardworkingserver.entity.Msg">
+    insert into messages (id, userto, userfrom, 
+      title, mtime, rely, 
+      status, content)
+    values (#{id,jdbcType=INTEGER}, #{userto,jdbcType=VARCHAR}, #{userfrom,jdbcType=VARCHAR}, 
+      #{title,jdbcType=VARCHAR}, #{mtime,jdbcType=TIMESTAMP}, #{rely,jdbcType=VARCHAR}, 
+      #{status,jdbcType=INTEGER}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.hardworkingserver.entity.Msg">
+    insert into messages
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="userto != null">
+        userto,
+      </if>
+      <if test="userfrom != null">
+        userfrom,
+      </if>
+      <if test="title != null">
+        title,
+      </if>
+      <if test="mtime != null">
+        mtime,
+      </if>
+      <if test="rely != null">
+        rely,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="userto != null">
+        #{userto,jdbcType=VARCHAR},
+      </if>
+      <if test="userfrom != null">
+        #{userfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="mtime != null">
+        #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rely != null">
+        #{rely,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.hardworkingserver.entity.Msg">
+    update messages
+    <set>
+      <if test="userto != null">
+        userto = #{userto,jdbcType=VARCHAR},
+      </if>
+      <if test="userfrom != null">
+        userfrom = #{userfrom,jdbcType=VARCHAR},
+      </if>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="mtime != null">
+        mtime = #{mtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rely != null">
+        rely = #{rely,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.ctgu.hardworkingserver.entity.Msg">
+    update messages
+    set userto = #{userto,jdbcType=VARCHAR},
+      userfrom = #{userfrom,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      rely = #{rely,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ctgu.hardworkingserver.entity.Msg">
+    update messages
+    set userto = #{userto,jdbcType=VARCHAR},
+      userfrom = #{userfrom,jdbcType=VARCHAR},
+      title = #{title,jdbcType=VARCHAR},
+      mtime = #{mtime,jdbcType=TIMESTAMP},
+      rely = #{rely,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateStatus">
+    update messages set status = 1 where id=#{id}
+  </update>
+</mapper>

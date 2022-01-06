@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ctgu.hardworkingserver.mapper.PubFileMapper">
+  <resultMap id="BaseResultMap" type="com.ctgu.hardworkingserver.entity.PubFile">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="filename" jdbcType="VARCHAR" property="filename" />
+    <result column="loc" jdbcType="VARCHAR" property="loc" />
+    <result column="collectnum" jdbcType="INTEGER" property="collectnum" />
+    <result column="downloadnum" jdbcType="INTEGER" property="downloadnum" />
+    <result column="isplayable" jdbcType="BIT" property="isplayable" />
+    <result column="ismusic" jdbcType="BIT" property="ismusic" />
+    <result column="isvideo" jdbcType="BIT" property="isvideo" />
+    <result column="ispic" jdbcType="BIT" property="ispic" />
+    <result column="mtime" jdbcType="TIMESTAMP" property="mtime" />
+    <result column="msize" jdbcType="VARCHAR" property="msize" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, username, filename, loc, collectnum, downloadnum, isplayable, ismusic, isvideo, 
+    ispic, msize
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from publicfiles
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByUsername" resultType="com.ctgu.hardworkingserver.entity.PubFile">
+      select * from publicfiles where username=#{username}
+    </select>
+  <select id="selectAll" resultType="com.ctgu.hardworkingserver.entity.PubFile">
+    select * from publicfiles;
+  </select>
+    <select id="unionQuery" resultType="com.ctgu.hardworkingserver.entity.PubFile" parameterType="java.lang.String">
+      select p.id, p.username, filename, loc, collectnum, downloadnum, isplayable, ismusic, isvideo, ispic, msize, mtime
+      from collectlist c,publicfiles p
+      where c.username = #{username} and c.pfid = p.id
+      order by p.id asc;
+    </select>
+  <select id="vagueQuery" resultType="com.ctgu.hardworkingserver.entity.PubFile">
+    select * from publicfiles where filename like #{key}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from publicfiles
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    insert into publicfiles (id, username, filename, 
+      loc, collectnum, downloadnum, 
+      isplayable, ismusic, isvideo, ispic, 
+      msize,mtime)
+    values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{filename,jdbcType=VARCHAR}, 
+      #{loc,jdbcType=VARCHAR}, #{collectnum,jdbcType=INTEGER}, #{downloadnum,jdbcType=INTEGER}, 
+      #{isplayable,jdbcType=BIT}, #{ismusic,jdbcType=BIT}, #{isvideo,jdbcType=BIT}, #{ispic,jdbcType=BIT}, 
+      #{msize,jdbcType=VARCHAR},#{mtime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    insert into publicfiles
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="username != null">
+        username,
+      </if>
+      <if test="filename != null">
+        filename,
+      </if>
+      <if test="loc != null">
+        loc,
+      </if>
+      <if test="collectnum != null">
+        collectnum,
+      </if>
+      <if test="downloadnum != null">
+        downloadnum,
+      </if>
+      <if test="isplayable != null">
+        isplayable,
+      </if>
+      <if test="ismusic != null">
+        ismusic,
+      </if>
+      <if test="isvideo != null">
+        isvideo,
+      </if>
+      <if test="ispic != null">
+        ispic,
+      </if>
+      <if test="msize != null">
+        msize,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="username != null">
+        #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        #{loc,jdbcType=VARCHAR},
+      </if>
+      <if test="collectnum != null">
+        #{collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="downloadnum != null">
+        #{downloadnum,jdbcType=INTEGER},
+      </if>
+      <if test="isplayable != null">
+        #{isplayable,jdbcType=BIT},
+      </if>
+      <if test="ismusic != null">
+        #{ismusic,jdbcType=BIT},
+      </if>
+      <if test="isvideo != null">
+        #{isvideo,jdbcType=BIT},
+      </if>
+      <if test="ispic != null">
+        #{ispic,jdbcType=BIT},
+      </if>
+      <if test="msize != null">
+        #{msize,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ctgu.hardworkingserver.entity.PubFile">
+    update publicfiles
+    <set>
+      <if test="username != null">
+        username = #{username,jdbcType=VARCHAR},
+      </if>
+      <if test="filename != null">
+        filename = #{filename,jdbcType=VARCHAR},
+      </if>
+      <if test="loc != null">
+        loc = #{loc,jdbcType=VARCHAR},
+      </if>
+      <if test="collectnum != null">
+        collectnum = #{collectnum,jdbcType=INTEGER},
+      </if>
+      <if test="downloadnum != null">
+        downloadnum = #{downloadnum,jdbcType=INTEGER},
+      </if>
+      <if test="isplayable != null">
+        isplayable = #{isplayable,jdbcType=BIT},
+      </if>
+      <if test="ismusic != null">
+        ismusic = #{ismusic,jdbcType=BIT},
+      </if>
+      <if test="isvideo != null">
+        isvideo = #{isvideo,jdbcType=BIT},
+      </if>
+      <if test="ispic != null">
+        ispic = #{ispic,jdbcType=BIT},
+      </if>
+      <if test="msize != null">
+        msize = #{msize,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="increaseCollectNum" parameterType="java.lang.Integer">
+    update publicfiles
+    set collectnum=collectnum+1
+    where id = #{id}
+  </update>
+  <update id="increaseDownloadNum" parameterType="java.lang.Integer">
+    update publicfiles
+    set downloadnum=downloadnum+1
+    where id = #{id}
+  </update>
+  <update id="reduceCollectNum" parameterType="java.lang.Integer">
+    update publicfiles
+    set collectnum=collectnum-1
+    where id = #{id}
+  </update>
+</mapper>
