@@ -1,0 +1,32 @@
+# Build and Release Folders
+bin-debug/
+bin-release/
+[Oo]bj/
+[Bb]in/
+
+# Other files and folders
+.settings/
+
+# Executables
+*.swf
+*.air
+*.ipa
+*.apk
+/front_pages/node_modules
+/front_pages/blog/build
+/front_pages/blog/node_modules
+/front_pages/blog/dist
+/front_pages/.idea
+/hardworkingServer/.idea
+/hardworkingServer/.mvn
+/hardworkingServer/target
+/hardworkingServer/FILE
+/hardworkingServer/mvnw
+/hardworkingServer/mvnw.cmd
+/hardworkingServer/node_modules
+
+
+
+# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
+# should NOT be excluded as they contain compiler settings and other important
+# information for Eclipse / Flash Builder.
