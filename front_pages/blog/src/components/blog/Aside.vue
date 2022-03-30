@@ -4,7 +4,6 @@
 
   <div id="box">
 
-  </div>
   <div id="box1">
     <img v-if="isLogged" :src="ava"  alt="">
     <img v-else src="../../assets/ico.jpg" alt="" @click="toLog">
@@ -29,12 +28,15 @@
     <small>管理</small>
   </div>
   <div id="box7">
+    <router-link to="/book" style="text-decoration: none"><p style="color: red">热门推荐</p></router-link>
+
     <router-link to="/setting" style="text-decoration: none"><p>用户信息</p></router-link>
     <router-link to="/manage" style="text-decoration: none"><p>博客管理</p></router-link>
     <router-link to="/news" style="text-decoration: none"><p>撰写博客</p></router-link>
-    <router-link to="/book" style="text-decoration: none"><p>热门推荐</p></router-link>
 
   </div>
+  </div>
+
   </div>
 </template>
 
@@ -88,15 +90,15 @@ export default {
 #box{
   position: absolute;
   border: 1px solid #EDEDED;
-  top: 90px;
-  left: 10px;
-  width: 200px;
-  height: 700px;
+  top: 38px;
+  left: 5%;
+  width: 14em;
+  height: 600px;
 }
 #box1{
   position: absolute;
-  top: 100px;
-  left: 60px;
+  top: 4%;
+  left: 30%;
   width: 100px;
   height: 100px;
   /*background-image: url("../../assets/cat.jpg");*/
@@ -111,40 +113,40 @@ export default {
 }
 #box2{
   position: absolute;
-  top: 200px;
-  left: 65px;
+  top: 20%;
+  left: 35%;
 }
 #box3{
   position: absolute;
-  top: 230px;
+  top: 26%;
   width: 187px;
-  left: 18px;
+  left: 10%;
   color: #AAAAAA;
   font-size: 15px;
 }
 #box4{
   position: absolute;
-  top: 300px;
-  left: 30px;
+  top: 35%;
+  left: 20%;
   color: #969696;
 }
 #box5{
   position: absolute;
-  top: 320px;
-  left: 60px;
+  top: 37%;
+  left: 35%;
   color:  #969696;
   font-size: 16px;
 }
 #box6{
   position: absolute;
-  top: 480px;
-  left: 30px;
+  top: 66%;
+  left: 20%;
   color: #969696;
 }
 #box7{
   position: absolute;
-  top: 500px;
-  left: 60px;
+  top: 68%;
+  left: 35%;
   color:  #969696;
 }
 </style>

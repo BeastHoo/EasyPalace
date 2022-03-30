@@ -98,6 +98,10 @@
   </div>
   <div style="margin-left: 10%;margin-bottom: 20px;margin-top: 30px;width: 80%">
     <mavon-editor
+      :subfield = "true"
+      :codeStyle="codeStyle"
+      :ishljs="true"
+      :externalLink="externalLink"
       :toolbars="toolbars"
       @imgAdd="handleEditorImgAdd"
       @imgDel="handleEditorImgDel"
@@ -128,6 +132,8 @@ export default {
     {
       this.$message.error("请先登录!");
       this.$router.push("/login");
+      let that = this;
+      that.codeStyle = "default";
     }
     else {
       this.client = new OSS({
@@ -163,6 +169,34 @@ export default {
       dynamicTags: [],
       inputVisible: false,
       inputValue: '',
+      codeStyle: '',
+      //需要配置的内容：
+      externalLink: {
+        markdown_css: function() {
+          // 这是你的markdown css文件路径
+          return '/markdown/github-markdown.min.css';
+        },
+        hljs_js: function() {
+          // 这是你的hljs文件路径
+          return '/highlightjs/highlight.min.js';
+        },
+        hljs_css: function(css) {
+          // 这是你的代码高亮配色文件路径
+          return '/highlightjs/styles/' + "default"  + '.min.css';
+        },
+        hljs_lang: function(lang) {
+          // 这是你的代码高亮语言解析路径
+          return '/highlightjs/languages/' + lang + '.min.js';
+        },
+        katex_css: function() {
+          // 这是你的katex配色方案路径路径
+          return '/katex/katex.min.css';
+        },
+        katex_js: function() {
+          // 这是你的katex.js路径
+          return '/katex/katex.min.js';
+        },
+      },
       toolbars: {
         bold: true, // 粗体
         italic: true, // 斜体

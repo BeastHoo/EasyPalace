@@ -9,9 +9,9 @@
 
     <div id="table">
       <div id="form-wrapper">
-        <el-form ref="form" :label-position="formPos" label-width="80px" :model="userInfo">
+        <el-form ref="form" :label-position="formPos" label-width="25%" :model="userInfo">
           <el-form-item label="性别">
-            <el-select style="width: 200px" :disabled="isUnEditable" v-model="userInfo.gender" >
+            <el-select style="width: 90%" :disabled="isUnEditable" v-model="userInfo.gender" >
               <el-option
                 v-for="item in options"
                 :key="item"
@@ -22,7 +22,7 @@
           </el-form-item>
           <el-form-item label="生日">
             <el-date-picker
-              style="width: 200px"
+              style="width: 90%"
               :disabled="isUnEditable"
               v-model="userInfo.birthday"
               type="date"
@@ -31,18 +31,18 @@
             </el-date-picker>
           </el-form-item>
           <el-form-item label="账号">
-            <el-input style="width: 200px" :disabled="true" v-model="userInfo.username"></el-input>
+            <el-input style="width: 90%" :disabled="true" v-model="userInfo.username"></el-input>
           </el-form-item>
           <el-form-item label="邮箱地址">
-            <el-input style="width: 200px" :disabled="true" v-model="userInfo.email"></el-input>
+            <el-input style="width: 90%" :disabled="true" v-model="userInfo.email"></el-input>
           </el-form-item>
           <el-form-item label="签名">
             <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" maxlength="30" show-word-limit
-                      style="width: 200px" :disabled="isUnEditable" v-model="userInfo.signature"></el-input>
+                      style="width: 90%" :disabled="isUnEditable" v-model="userInfo.signature"></el-input>
           </el-form-item>
           <el-form-item label="座右铭">
             <el-input type="textarea" :autosize="{ minRows: 2, maxRows: 4}" maxlength="30" show-word-limit
-                      style="width: 200px"  :disabled="isUnEditable" v-model="userInfo.slogan"></el-input>
+                      style="width: 90%"  :disabled="isUnEditable" v-model="userInfo.slogan"></el-input>
           </el-form-item>
         </el-form>
       </div>
@@ -162,7 +162,7 @@ export default {
   border-radius: 100%;
   position: relative;
   top: 6%;
-  left: 14%;
+  left: 8.5%;
   width: 130px;
   height: 130px;
 }
@@ -182,7 +182,7 @@ export default {
   background: rgba(255, 255, 255, .8);
   border-radius: 20px;
   position: relative;
-  left: 8%;
+  left: 2%;
   top: 10%;
   width: 20%;
   height: 64%;
@@ -210,11 +210,11 @@ export default {
   background: rgba(255, 255, 255, .8);
   border-radius: 10px;
   border: 1px dashed #409EFF;
-  width: 900px;
+  width: 72%;
   height: 600px;
   overflow-y: auto;
   position: absolute;
-  left: 30%;
+  left: 24%;
   top: 15%;
 }
 

@@ -1,78 +1,134 @@
 <template>
   <div class="mainContainer">
+    <div class="container right-panel-active">
+      <!-- Sign in -->
+      <div class="container__form container--signup">
+        <el-form :model="form" :rules="rules" class="formStyle" ref="form"  id="form2">
+          <h2 class="form__title">登 录</h2>
+          <el-form-item  prop="name" class="input">
+            <el-input v-model="form.name"  placeholder="账 号"></el-input>
+          </el-form-item>
+          <!--          <input placeholder="账 号" class="input" required/>-->
+          <el-form-item  prop="password" class="input">
+            <el-input v-model="form.password"  show-password  placeholder="密 码" ></el-input>
+          </el-form-item>
+          <!--          <input type="password" placeholder="密 码" class="input" />-->
+          <router-link to="/certificate" class="link">忘记密码?</router-link>
+          <el-button class="btn" @click="submitForm('form')">登 录</el-button>
+        </el-form>
 
-
-    <div style="overflow-y: auto;position: relative;top: 20%;left: 30%;background: rgba(255, 255, 255, .9);border-radius: 20px;height: 62%;width: 40%">
-      <br/>
-      <br/>
-      <h1 >欢 迎</h1>
-
-
-      <el-form :model="form" :rules="rules" ref="form" label-width="80px">
-      <div style="width: 60%; position: relative;left: 15%">
-        <el-form-item label="账 号 "prop="name">
-          <el-input v-model="form.name"  placeholder="账 号"></el-input>
-        </el-form-item>
       </div>
 
+      <!-- Sign up -->
+      <div class="container__form container--signin">
+        <el-form :model="registForm" class="formStyle" ref="registForm" :rules="rules">
+          <h2 class="form__title">注 册</h2>
+          <el-form-item  prop="name_re" class="input">
+            <el-input v-model="registForm.name_re" autocomplete="off" placeholder="账 号"></el-input>
+          </el-form-item>
+<!--          <input type="text" placeholder="账 号"  class="input"/>-->
+          <el-form-item prop="email" class="input">
+            <el-input  v-model="registForm.email" autocomplete="off" placeholder="电子邮箱"></el-input>
+          </el-form-item>
+<!--          <input type="email"  class="input" />-->
 
-      <div style="width: 60%; position: relative;left: 15%">
-        <el-form-item label="密 码" prop="password" >
-          <el-input v-model="form.password" show-password  placeholder="密 码" ></el-input>
-        </el-form-item>
+          <el-form-item prop="password_1" class="input">
+            <el-input v-model="registForm.password_1" show-password placeholder="密 码" autocomplete="off"></el-input>
+          </el-form-item>
+<!--          <input type="password" placeholder="密 码" class="input" />-->
+          <el-form-item prop="password_2" class="input">
+            <el-input v-model="registForm.password_2" show-password autocomplete="off" placeholder="二次密码"></el-input>
+          </el-form-item>
+<!--          <input type="password" placeholder="二次密码" class="input" />-->
+<!--          <button class="btn">注 册</button>-->
+          <el-button class="btn" @click="askForCode('registForm')">立即注册</el-button>
+        </el-form>
       </div>
-      </el-form>
-      <el-row>
-        <el-col :span="24"><el-button  type="primary" @click="submitForm('form')">立即登录</el-button>
-        </el-col>
-      </el-row>
 
-      <el-row>
-        <el-col :span="24">
-          <el-button type="text" @click="certificate()" style="opacity: .54;font-size: 12px;color: black;">忘记密码?</el-button>
-        </el-col>
-      </el-row>
-
-
-
-      <el-row>
-        <el-col :span="24"><h4>还没有账号?<el-button type="text" @click="regist()">立即注册</el-button></h4>
-        </el-col>
-      </el-row>
+      <!-- Overlay -->
+      <div class="container__overlay">
+        <div class="overlay">
+          <div class="overlay__panel overlay--left">
+            <button class="btn" id="signIn">注 册</button>
+          </div>
+          <div class="overlay__panel overlay--right">
+            <el-button class="btn" id="signUp">登 录</el-button>
+          </div>
+        </div>
+      </div>
     </div>
+
+<!--    <div style="overflow-y: auto;position: relative;top: 20%;left: 30%;background: rgba(255, 255, 255, .9);border-radius: 20px;height: 62%;width: 40%">-->
+<!--      <br/>-->
+<!--      <br/>-->
+<!--      <h1 >欢 迎</h1>-->
+
+
+<!--      <el-form :model="form" :rules="rules" ref="form" label-width="80px">-->
+<!--      <div style="width: 60%; position: relative;left: 15%">-->
+<!--        <el-form-item label="账 号 "prop="name">-->
+<!--          <el-input v-model="form.name"  placeholder="账 号"></el-input>-->
+<!--        </el-form-item>-->
+<!--      </div>-->
+
+
+<!--      <div style="width: 60%; position: relative;left: 15%">-->
+<!--        <el-form-item label="密 码" prop="password" >-->
+<!--          <el-input v-model="form.password" show-password  placeholder="密 码" ></el-input>-->
+<!--        </el-form-item>-->
+<!--      </div>-->
+<!--      </el-form>-->
+<!--      <el-row>-->
+<!--        <el-col :span="24"><el-button  type="primary" @click="submitForm('form')">立即登录</el-button>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+
+<!--      <el-row>-->
+<!--        <el-col :span="24">-->
+<!--          <el-button type="text" @click="certificate()" style="opacity: .54;font-size: 12px;color: black;">忘记密码?</el-button>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+
+
+
+<!--      <el-row>-->
+<!--        <el-col :span="24"><h4>还没有账号?<el-button type="text" @click="regist()">立即注册</el-button></h4>-->
+<!--        </el-col>-->
+<!--      </el-row>-->
+<!--    </div>-->
 
 
     <div>
-      <el-dialog title="注 册" :visible.sync="showRegisterDialog">
-        <el-form :model="registForm" ref="registForm" label-width="80px" :rules="rules">
-          <div style="width: 60%; position: relative;left: 15%">
-            <el-form-item label="账 号 " prop="name_re">
-              <el-input v-model="registForm.name_re" autocomplete="off"></el-input>
-            </el-form-item>
-          </div>
+<!--      <el-dialog title="注 册" :visible.sync="showRegisterDialog">-->
+<!--        <el-form :model="registForm" ref="registForm" label-width="80px" :rules="rules">-->
+<!--          <div style="width: 60%; position: relative;left: 15%">-->
+<!--            <el-form-item label="账 号 " prop="name_re">-->
+<!--              <el-input v-model="registForm.name_re" autocomplete="off"></el-input>-->
+<!--            </el-form-item>-->
+<!--          </div>-->
 
-          <div style="width: 60%; position: relative;left: 15%">
-          <el-form-item label="密 码 " prop="password_1">
-            <el-input v-model="registForm.password_1" show-password autocomplete="off"></el-input>
-          </el-form-item>
-          </div>
+<!--          <div style="width: 60%; position: relative;left: 15%">-->
+<!--          <el-form-item label="密 码 " prop="password_1">-->
+<!--            <el-input v-model="registForm.password_1" show-password autocomplete="off"></el-input>-->
+<!--          </el-form-item>-->
+<!--          </div>-->
 
-          <div style="width: 60%; position: relative;left: 15%">
-          <el-form-item label="确认密码" prop="password_2">
-            <el-input v-model="registForm.password_2" show-password autocomplete="off"></el-input>
-          </el-form-item>
-          </div>
+<!--          <div style="width: 60%; position: relative;left: 15%">-->
+<!--          <el-form-item label="确认密码" prop="password_2">-->
+<!--            <el-input v-model="registForm.password_2" show-password autocomplete="off"></el-input>-->
+<!--          </el-form-item>-->
+<!--          </div>-->
 
-          <div style="width: 60%; position: relative;left: 15%">
-          <el-form-item label="电子邮箱" prop="email">
-            <el-input v-model="registForm.email" autocomplete="off"></el-input>
-          </el-form-item>
-          </div>
+<!--          <div style="width: 60%; position: relative;left: 15%">-->
+<!--          <el-form-item label="电子邮箱" prop="email">-->
+<!--            <el-input v-model="registForm.email" autocomplete="off"></el-input>-->
+<!--          </el-form-item>-->
+<!--          </div>-->
 
-        </el-form>
-        <div slot="footer" style="position: absolute;left: 43%;top: 85%">
-          <el-button type="primary" @click="askForCode('registForm')">立即注册</el-button>
-        </div>
+<!--        </el-form>-->
+<!--        <div slot="footer" style="position: absolute;left: 43%;top: 85%">-->
+<!--          <el-button type="primary" @click="askForCode('registForm')">立即注册</el-button>-->
+<!--        </div>-->
 
         <el-dialog
           width="30%"
@@ -92,7 +148,7 @@
             <el-button type="primary" @click="checkCode">确&nbsp;&nbsp;&nbsp;&nbsp;定</el-button>
           </div>
         </el-dialog>
-      </el-dialog>
+<!--      </el-dialog>-->
     </div>
   </div>
 </template>
@@ -101,6 +157,24 @@
 
 export default {
   name: "Login",
+  mounted:function () {
+    const signInBtn = document.getElementById("signIn");
+    const signUpBtn = document.getElementById("signUp");
+    // const fistForm = document.getElementById("form1");
+    // const secondForm = document.getElementById("form2");
+    const container = document.querySelector(".container");
+
+    signInBtn.addEventListener("click", () => {
+      container.classList.remove("right-panel-active");
+    });
+
+    signUpBtn.addEventListener("click", () => {
+      container.classList.add("right-panel-active");
+    });
+
+    // fistForm.addEventListener("submit", (e) => e.preventDefault());
+    // secondForm.addEventListener("submit", (e) => e.preventDefault());
+  },
   data() {
     var validatePass = (rule, value, callback) => {
       if (value === '') {
@@ -396,13 +470,221 @@ export default {
 }
 
 </script>
-
+<style src="../../static/login-root.css"></style>
 <style scoped>
-.mainContainer{
-  display: flex;
-  overflow-y: auto;
-  background-image: url("https://easypalace.oss-cn-chengdu.aliyuncs.com/projectfile/bgp.jpg");
+/*.mainContainer{*/
+/*  display: flex;*/
+/*  overflow-y: auto;*/
+/*  background-image: url("https://easypalace.oss-cn-chengdu.aliyuncs.com/projectfile/bgp.jpg");*/
+/*  background-size: cover;*/
+/*  height: 89vh;*/
+/*}*/
+
+.mainContainer {
+  align-items: center;
+  background: var(--white) url("https://easypalace.oss-cn-chengdu.aliyuncs.com/projectfile/bgp.jpg") no-repeat fixed center;
   background-size: cover;
-  height: 89vh;
+  display: grid;
+  height: 100vh;
+  place-items: center;
 }
+
+.form__title {
+  font-weight: 300;
+  margin: 0 0 1.25rem;
+}
+
+.link {
+  color: var(--gray);
+  font-size: 0.9rem;
+  margin: 1.5rem 0;
+  text-decoration: none;
+}
+
+.container {
+  background-color: var(--white);
+  border-radius: var(--button-radius);
+  box-shadow: 0 0.9rem 1.7rem rgba(0, 0, 0, 0.25),
+  0 0.7rem 0.7rem rgba(0, 0, 0, 0.22);
+  height: var(--max-height);
+  max-width: var(--max-width);
+  overflow: hidden;
+  position: relative;
+  top: 10%;
+  width: 100%;
+}
+
+.container__form {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  transition: all 0.6s ease-in-out;
+}
+
+.container--signin {
+  left: 0;
+  width: 50%;
+  z-index: 2;
+}
+
+.container.right-panel-active .container--signin {
+  transform: translateX(100%);
+}
+
+.container--signup {
+  left: 0;
+  opacity: 0;
+  width: 50%;
+  z-index: 1;
+}
+
+.container.right-panel-active .container--signup {
+  -webkit-animation: show 0.6s;
+  animation: show 0.6s;
+  opacity: 1;
+  transform: translateX(100%);
+  z-index: 5;
+}
+
+.container__overlay {
+  height: 100%;
+  left: 50%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+  transition: transform 0.6s ease-in-out;
+  width: 50%;
+  z-index: 100;
+}
+
+.container.right-panel-active .container__overlay {
+  transform: translateX(-100%);
+}
+
+.overlay {
+  background: var(--lightblue) url("https://easypalace.oss-cn-chengdu.aliyuncs.com/projectfile/bgp.jpg") no-repeat fixed center;
+  background-size: cover;
+  height: 100%;
+  left: -100%;
+  position: relative;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  width: 200%;
+}
+
+.container.right-panel-active .overlay {
+  transform: translateX(50%);
+}
+
+.overlay__panel {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  transform: translateX(0);
+  transition: transform 0.6s ease-in-out;
+  width: 50%;
+}
+
+.overlay--left {
+  transform: translateX(-20%);
+}
+
+.container.right-panel-active .overlay--left {
+  transform: translateX(0);
+}
+
+.overlay--right {
+  right: 0;
+  transform: translateX(0);
+}
+
+.container.right-panel-active .overlay--right {
+  transform: translateX(20%);
+}
+
+.btn {
+  background-color: var(--blue);
+  background-image: linear-gradient(90deg, var(--blue) 0%, var(--lightblue) 74%);
+  border-radius: 20px;
+  border: 1px solid var(--blue);
+  color: var(--white);
+  cursor: pointer;
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 0.1rem;
+  padding: 0.9rem 4rem;
+  text-transform: uppercase;
+  transition: transform 80ms ease-in;
+}
+
+.form > .btn {
+  margin-top: 1.5rem;
+}
+
+.btn:active {
+  transform: scale(0.95);
+}
+
+.btn:focus {
+  outline: none;
+}
+
+.btn:hover{
+  background: linear-gradient(120deg, #3498db, #8e44ad, #3498db);
+}
+
+.formStyle {
+  background-color: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 0 3rem;
+  height: 100%;
+  text-align: center;
+}
+
+.input {
+  /*background-color: #fff;*/
+  border: none;
+  padding: 0.2rem 0.9rem;
+  margin: 0.5rem 0;
+  width: 100%;
+}
+
+@-webkit-keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+@keyframes show {
+  0%,
+  49.99% {
+    opacity: 0;
+    z-index: 1;
+  }
+
+  50%,
+  100% {
+    opacity: 1;
+    z-index: 5;
+  }
+}
+
+
+
 </style>

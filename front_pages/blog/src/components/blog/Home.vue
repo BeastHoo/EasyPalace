@@ -1,6 +1,6 @@
 <template>
 
-  <div>
+  <div id="maincontainer">
 
     <div id="sideBox">
       <Aside/>
@@ -8,7 +8,7 @@
 
 
   <div id="box2">
-    <p>山山而川</p>
+    <p>EasyPalace</p>
   </div>
 
     <div id="box_slogan">
@@ -17,27 +17,23 @@
 
   <div id="box">
     <div id="box1">
-
         <el-carousel  indicator-position="outside">
           <el-carousel-item v-for="item in carolselList" :key="item.blogId">
             <router-link :to="{path: '/blogdetails',query: {bid: item.blogId} }" >
-            <img v-if="item.imgUrl" :src="item.imgUrl" style="width: 700px;height: 280px;"  />
+            <img v-if="item.imgUrl" :src="item.imgUrl" style="width: 100%;height: 100%;border-radius: 10px"  />
             <h1 style="z-index: 1">{{item.title}}</h1>
             <p >{{  item.title}}</p>
           </router-link>
           </el-carousel-item>
         </el-carousel>
-
-
-
     </div>
   </div>
 
     <div id="blog_list_box" >
         <ul id="box3"  v-for="(blog_item,i) in curPage" :key="blog_item.blogId">
           <li @click="look(blog_item.blogId)">
-            <el-image v-if="blog_item.imgUrl !== ''" style="position:absolute;text-align: left;margin-top: -12px;width: 230px;
-            height: 220px;left: 10px;border-radius: 5px;"
+            <el-image v-if="blog_item.imgUrl !== ''" style="position:absolute;text-align: left;width: 230px;
+            height: 220px;left: 10px;border-radius: 5px;  margin-top: -12px;"
                        :src="blog_item.imgUrl" alt="封面" lazy>
               <div slot="placeholder" class="image-slot">
                 加载中<span class="dot">...</span>
@@ -45,7 +41,7 @@
             </el-image>
             <img v-else id="ava" src="../../assets/b1.jpg" alt="">
             <div id="title_box" >
-              <h2>{{blog_item.title}}</h2>
+              <h2 >{{blog_item.title}}</h2>
             </div>
 
             <div id="desc_box">
@@ -288,8 +284,8 @@ export default {
 
 #box2{
   position: absolute;
-  top: 50px;
-  left: 260px;
+  top: 0;
+  left: 20em;
 }
 #box2 p{
   font-family: 华文宋体;
@@ -299,8 +295,8 @@ export default {
 #box_slogan
 {
   position: absolute;
-  top: 50px;
-  left: 260px;
+  top: 0;
+  left: 20em;
   text-align: left;
 }
 
@@ -312,12 +308,12 @@ export default {
 }
 #box{
   position: absolute;
-  top: 150px;
-  left: 260px;
-  width: 700px;
-  height: 280px;
-  border: 1px solid #EDEDED;
-  border-radius: 10px;
+  top: 100px;
+  left: 20em;
+  width: 46em;
+  height: 10%;
+  /*border: 1px solid #EDEDED;*/
+  /*border-radius: 10px;*/
 }
 #box1 h1{
   font-family: 黑体;
@@ -334,10 +330,10 @@ export default {
   padding: 10px;
 }
 #box1{
+  border-radius: 10px;
   position: absolute;
-  width: 700px;
-  height: 280px;
-  border-radius:5px;
+  width: 100%;
+  height: 300px;
   background-image: url("../../assets/a1.jpg");
   background-size: cover;
   border: 1px solid #EDEDED;
@@ -389,8 +385,8 @@ export default {
 /*  background-size:100% 100%;*/
 /*}*/
 #box3{
-  width: 690px;
-  height: 230px;
+  width: 100%;
+  height: 14.5em;
   border-radius: 5px;
   border: 1px solid #EDEDED;
 }
@@ -406,9 +402,9 @@ export default {
 #box3 h2{
   text-align: left;
   color: darkcyan;
-  width: 460px;
+  width: 100%;
   /*top:20px;*/
-  font-size: 20px;
+  font-size: 1.4em;
 }
 #box3 p{
   word-break: break-all;
@@ -418,10 +414,10 @@ export default {
   text-align: left;
   font-family: 黑体;
   color: #99a9bf;
-  line-height:30px
+  line-height:2em
 }
 #box3 hr{
-  width: 420px;
+  width: 100%;
   border: 1px solid #EDEDED;
 }
 #box3 small{
@@ -431,11 +427,11 @@ export default {
 
 #box6{
   position: absolute;
-  top: 80px;
-  left: 1000px;
+  top: 100px;
+  left: 67.8em;
   border: 1px solid #EDEDED;
-  width: 300px;
-  height: 500px;
+  width: 19em;
+  height: 31.5em;
 }
 #box6 h2{
   font-size: 20px;
@@ -447,7 +443,7 @@ export default {
   position: relative;
   top: 35px;
   border: 1px solid white;
-  width: 280px;
+  width: 260px;
   height: 75px;
 }
 
@@ -482,11 +478,11 @@ ul{
 
 #box7{
   position: absolute;
-  top: 600px;
-  left: 1000px;
+  top: 610px;
+  left: 67.8em;
   border: 1px solid #EDEDED;
-  width: 300px;
-  height: 300px;
+  width: 19em;
+  height: 19em;
 }
 #box7 p{
   position: absolute;
@@ -545,10 +541,10 @@ ul{
 #box8{
   position: absolute;
   top: 920px;
-  left: 1000px;
+  left: 67.8em;
   border: 1px solid #EDEDED;
-  width: 300px;
-  height: 300px;
+  width: 19em;
+  height: 18em;
 }
 
 #box8 span{
@@ -557,15 +553,16 @@ ul{
 }
 
 #sideBox{
-  display: flex
+  display: flex;
+
 }
 
 #blog_list_box{
   height: 100%;
-  width: 700px;
+  width: 44em;
   position: absolute;
-  top:480px;
-  left: 260px;
+  top:410px;
+  left: 19.8em;
 }
 
 #coverBox{
@@ -583,52 +580,52 @@ ul{
 #title_box{
   position: relative;
   left: 220px;
-  width: 460px;
-  height: 25px
+  width: 30em;
+  height: 1.2em
 }
 
 #et_box{
   position: relative;
-  left: 220px;
-  width: 420px;
+  left: 14em;
+  width: 26em;
   text-align: left
 }
 #line_box{
   position: relative;
-  left: 220px;
-  width: 420px
+  left: 14em;
+  width: 28em
 }
 #desc_box{
   position: relative;
-  left: 220px;
-  width: 460px;
-  height: 142px;
+  left: 14em;
+  width: 29.6em;
+  height: 9.4em;
   overflow-y:hidden;
 }
 
 #rank_box{
   position: relative;
-  left:260px;
-  top: -20px;
+  left:20em;
+  top: -1.2em;
   display: inline-block;
-  width: 100px;
-  height: 20px;
+  width: 7.2em;
+  height: 2em;
   text-align: left
 }
 
 #rank_box img{
-  width: 20px;
-  height: 20px;
+  width: 1.2em;
+  height: 1.2em;
 }
 
 #rank_box small{
   position: relative;
-  top: -5px
+  top: -0.4em
 }
 
 #pagee{
   position: absolute;
-  top: 1500px;
+  top: 1420px;
   left: 520px;
   height: 100px;
 }
@@ -640,13 +637,19 @@ ul{
 #wz_line{
   text-align: left;
   position: relative;
-  top: -5px;
-  left: 0px
+  top: -10px;
+  left: 40px;
+  width: 70%;
 }
 
 #wz_line hr{
-  width: 200px;
+  width: 100%;
   border: 1px solid #EDEDED;
+}
+
+#maincontainer{
+  position: absolute;
+  width: 99%;
 }
 </style>
 

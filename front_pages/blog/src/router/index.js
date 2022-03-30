@@ -15,6 +15,8 @@ import Time from "../components/blog/Time";
 import Setting from "../components/Setting";
 import Book from "../components/blog/Book";
 import EditorInfo from "../components/EditorInfo";
+// import GlobeChess from "../../static/GlobeChess/index.html"
+// import plane from "../components/plane";
 Vue.use(Router)
 
 
@@ -42,5 +44,7 @@ export default new Router({
     {path: '/setting', component:Setting},
     {path: '/book', component: Book},
     {path: '/userinfo', component: EditorInfo},
+    // {path: '/static/GlobeChess', component: GlobeChess},
+    // {path: '/plane', component: plane},
   ]
 })

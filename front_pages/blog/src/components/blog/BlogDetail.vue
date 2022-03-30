@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="maincontainer">
     <div id="sideBox">
        <Aside/>
     </div>
@@ -150,7 +150,7 @@ export default {
 }
 #all{
   position: absolute;
-  top: 100px;
+  top: 40px;
   left: 300px;
   border: 1px solid #CFCFCF;
   width: 1000px;
@@ -168,5 +168,11 @@ export default {
 
 #contentBox{
   margin-top: 5px;text-align:left;padding-left: 10px
+}
+
+#maincontainer{
+  position: absolute;
+  width: 100vh;
+  top: 0px;
 }
 </style>

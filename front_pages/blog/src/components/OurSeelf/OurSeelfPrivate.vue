@@ -213,7 +213,7 @@ export default {
         // console.log(options);
         this.fname = options.file.name;
         this.fsize = options.file.size;
-        let fileName = file.name.substr(0,file.name.lastIndexOf('.'))
+        let fileName = file.name
         let date = new Date().getTime()
         let fileNames = `${date}_${fileName}` // 拼接文件名，保证唯一，这里使用时间戳+原文件名
         // 上传文件,这里是上传到OSS的 uploads文件夹下
@@ -273,7 +273,6 @@ export default {
         type: 'warning',
         position: 'top-left'
       });
-      row.downloadnum+=1;
       this.isDownLoading[index] = true;
       this.axios.get(row.loc,
         {responseType:'blob', onDownloadProgress: (evt) => {
